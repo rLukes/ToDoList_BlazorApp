@@ -1,1 +1,1 @@
-"# ToDoList_BlazorApp" 
+A simple demo application in blazor
