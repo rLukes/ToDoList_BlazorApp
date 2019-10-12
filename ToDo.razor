@@ -2,10 +2,17 @@
 @using ToDoList_BlazorApp.Data
 
 <h3>My To Do List</h3>
+<br />
+<b>Num of completed: @todos.Count(c => c.IsDone)</b>
+<br />
+<br />
 <ul>
     @foreach(ToDoItem item in todos)
     {
-        <li>@item.Title</li>
+        <li>
+            <input type="checkbox" @bind="item.IsDone"/>
+            <input @bind="item.Title" />
+        </li>
     }
 </ul>
 
@@ -26,6 +33,7 @@
                 IsDone = false
             };
             todos.Add(newItem);
+            newTodTitle = string.Empty;
         }
     }
 
