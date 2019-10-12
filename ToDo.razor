@@ -1,9 +1,32 @@
 ﻿@page "/todo";
 @using ToDoList_BlazorApp.Data
 
-<h3>ToDo</h3>
+<h3>My To Do List</h3>
+<ul>
+    @foreach(ToDoItem item in todos)
+    {
+        <li>@item.Title</li>
+    }
+</ul>
+
+<input @bind="newTodTitle" placeholder="add something to do.." />
+<button @onclick="AddToDo">Add todo</button>
 
 @code {
     private IList<ToDoItem> todos = new List<ToDoItem>();
+    private String newTodTitle;
+
+    private void AddToDo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodTitle))
+        {
+            var newItem = new ToDoItem
+            {
+                Title = newTodTitle,
+                IsDone = false
+            };
+            todos.Add(newItem);
+        }
+    }
 
 }
